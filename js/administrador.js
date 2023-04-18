@@ -1,5 +1,18 @@
 import Pelicula from "./classPeliculas.js";
 
-let nuevaPeli = new Pelicula(0,'Super Mario', 'algun desc', '-', 'url de imagen', 'aventura', 2023, 93, 'EEUU', 'varios actores');
+let formPelicula = document.getElementById('formPelicula');
 
-console.log(nuevaPeli)
+formPelicula.addEventListener('submit', prepararFormulario);
+
+
+
+function prepararFormulario(e){
+    e.preventDefault();
+    crearPelicula();
+}
+
+function crearPelicula(e){
+    let nuevaPeli = new Pelicula('Super Mario', 'algun desc', '-', 'url de imagen', 'aventura', 2023, 93, 'EEUU', 'varios actores');
+    console.log(nuevaPeli);
+
+}
