@@ -1,4 +1,4 @@
-# Crud de Películas 🔢
+# Crud de Películas ▶️
 
 Ejercicio sobre crear, leer, actualizar y borrar.
 
