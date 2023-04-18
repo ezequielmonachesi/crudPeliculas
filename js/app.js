@@ -16,3 +16,5 @@ function cambiarTema(color) {
   //guardar en Localstorage
   localStorage.setItem('tema', JSON.stringify(color));
 }
+
+// Tarea: cambiar el ícono del navbar del tema seleccionado.
