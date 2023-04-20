@@ -1,6 +1,17 @@
 import Pelicula from "./classPeliculas.js";
 
 let formPelicula = document.getElementById("formPelicula");
+let codigo = document.getElementById("codigo");
+let titulo = document.getElementById("titulo");
+let genero = document.getElementById("genero");
+let descripcion = document.getElementById("descripcion");
+let imagen = document.getElementById("imagen");
+let director = document.getElementById("director");
+let reparto = document.getElementById("reparto");
+let duracion = document.getElementById("duracion");
+let pais = document.getElementById("pais");
+let anio = document.getElementById("anio");
+
 // // si quiero trabahar con un array de objetos normales hago esta línea de código
 // let listaPeliculas = JSON.parse(localStorage.getItem('listaPeliculas')) || [];
 
@@ -26,7 +37,7 @@ if (!listaPeliculas) {
   );
 }
 
-console.log(listaPeliculas)
+console.log(listaPeliculas);
 
 formPelicula.addEventListener("submit", prepararFormulario);
 
@@ -37,16 +48,18 @@ function prepararFormulario(e) {
 
 function crearPelicula() {
   //validar el formulario
+    
+  // creo la peli
   let nuevaPeli = new Pelicula(
-    "Super mario",
-    "alguna desc",
-    "-",
-    "url de imagen",
-    "aventura",
-    2023,
-    93,
-    "EEUU",
-    "varios actores"
+    titulo.value,
+    descripcion.value,
+    director.value,
+    imagen.value,
+    genero.value,
+    anio.value,
+    duracion.value,
+    pais.value,
+    reparto.value
   );
   console.log(nuevaPeli);
   //guardar la peli en el array

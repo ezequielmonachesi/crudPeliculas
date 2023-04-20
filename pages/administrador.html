@@ -295,7 +295,7 @@
                       <label for="descripcion" class="form-label"
                         >Descripción *</label
                       >
-                      <input
+                      <textarea
                         type="text"
                         class="form-control"
                         placeholder="Ej: Érase una vez en una ciudad..."
@@ -303,7 +303,8 @@
                         id="descripcion"
                         maxlength="1000"
                         minlength="3"
-                      />
+                      >
+                      </textarea>
                     </div>
                     <div class="col-12">
                       <label for="imagen" class="form-label">Imágen *</label>
@@ -323,13 +324,14 @@
                       <select
                         class="form-select"
                         aria-label="Genero de pelicula"
+                        id="genero"
                       >
-                        <option selected>Seleccione una opción</option>
-                        <option value="1">Acción</option>
-                        <option value="2">Aventura</option>
-                        <option value="3">Comedia</option>
-                        <option value="4">Terror</option>
-                        <option value="5">Drama</option>
+                        <option selected value="">Seleccione una opción</option>
+                        <option value="Accion">Acción</option>
+                        <option value="Aventura">Aventura</option>
+                        <option value="Comedia">Comedia</option>
+                        <option value="Terror">Terror</option>
+                        <option value="Drama">Drama</option>
                       </select>
                     </div>
                     <div class="col-12">
@@ -387,17 +389,17 @@
                         type="text"
                         class="form-control"
                         aria-label="director"
-                        placeholder="Ej: Ben Affleck."
+                        placeholder="Ej: Steven."
                         id="director"
                         minlength="5"
                         maxlength="50"
                       />
                     </div>
-                    <aside>
+                    <div class="alert alert-danger" role="alert" id="alertMsjError">
+                    </div>
                       <button type="submit" class="btn btn-primary">
                         Enviar
                       </button>
-                    </aside>
                   </div>
                 </form>
               </div>
