@@ -15,6 +15,7 @@ function cambiarTema(color) {
   document.querySelector("html").setAttribute("data-bs-theme", color);
   //guardar en Localstorage
   localStorage.setItem('tema', JSON.stringify(color));
+  // Tarea: cambiar el ícono del navbar del tema seleccionado.
     if(color === "light"){ 
       document.getElementById('icon-toggle').classList.remove('bi-moon-stars-fill');
       document.getElementById('icon-toggle').classList.add('bi-brightness-high-fill');
@@ -23,5 +24,3 @@ function cambiarTema(color) {
       document.getElementById('icon-toggle').classList.add('bi-moon-stars-fill');
     }
 }
-
-// Tarea: cambiar el ícono del navbar del tema seleccionado.
