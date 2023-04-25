@@ -1,4 +1,5 @@
 import Pelicula from "./classPeliculas.js";
+import { sumarioValidaciones } from "./helpers.js";
 
 let formPelicula = document.getElementById("formPelicula");
 let codigo = document.getElementById("codigo");
@@ -48,24 +49,30 @@ function prepararFormulario(e) {
 
 function crearPelicula() {
   //validar el formulario
-    
-  // creo la peli
-  let nuevaPeli = new Pelicula(
-    titulo.value,
-    descripcion.value,
-    director.value,
-    imagen.value,
-    genero.value,
-    anio.value,
-    duracion.value,
-    pais.value,
-    reparto.value
-  );
-  console.log(nuevaPeli);
-  //guardar la peli en el array
-  listaPeliculas.push(nuevaPeli);
-  console.log(listaPeliculas);
-  //guardar el array en localstorage
-  localStorage.setItem("listaPeliculas", JSON.stringify(listaPeliculas));
-  //limpiar el formulario
+    let listaErrores = sumarioValidaciones(titulo.value);
+    if(listaErrores.length === 0){
+      // creo la peli
+      let nuevaPeli = new Pelicula(
+        titulo.value,
+        descripcion.value,
+        director.value,
+        imagen.value,
+        genero.value,
+        anio.value,
+        duracion.value,
+        pais.value,
+        reparto.value
+      );
+      console.log(nuevaPeli);
+      //guardar la peli en el array
+      listaPeliculas.push(nuevaPeli);
+      console.log(listaPeliculas);
+      //guardar el array en localstorage
+      localStorage.setItem("listaPeliculas", JSON.stringify(listaPeliculas));
+      //limpiar el formulario
+    }else{
+      let alerta = document.getElementById('alertMsjError');
+      alerta.className = 'alert alert-danger';
+      alerta.innerHTML = listaErrores;
+    }
 }
