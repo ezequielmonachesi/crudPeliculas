@@ -54,7 +54,9 @@ function crearPelicula() {
     descripcion.value,
     pais.value,
     reparto.value,
-    director.value
+    director.value,
+    imagen.value,
+    anio.value
   );
   console.log(descripcion.value);
   if (listaErrores.length === 0) {
