@@ -41,6 +41,43 @@ if (!listaPeliculas) {
 console.log(listaPeliculas);
 
 formPelicula.addEventListener("submit", prepararFormulario);
+cargaInicial();
+// funciones
+function cargaInicial(){
+  if(listaPeliculas.length > 0){
+    //dibujar las filas de la tabla
+    listaPeliculas.map((pelicula, indice)=> crearFila(pelicula, indice +1))
+  }
+}
+
+function crearFila(pelicula, indice){
+  let tablaPelicula = document.querySelector('tbody');
+  tablaPelicula.innerHTML += `
+  <tr>
+                <th scope="row">${indice}</th>
+                <td>${pelicula.titulo}</td>
+                <td class="text-truncate ancho pe-5">
+                .${pelicula.descripcion}
+                </td>
+                <td class="text-truncate ancho pe-5">
+                ${pelicula.imagen}
+                </td>
+                <td>${pelicula.genero}</td>
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-warning mx-1"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                  >
+                    <i class="bi bi-pencil-square"></i></button
+                  ><button type="button" class="btn btn-danger mx-1">
+                    <i class="bi bi-x-square"></i>
+                  </button>
+                </td>
+    </tr>
+  `
+}
 
 function prepararFormulario(e) {
   e.preventDefault();

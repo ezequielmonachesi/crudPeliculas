@@ -33,7 +33,7 @@ function validarAnioPelicula(anio){
 }
 
 function duracionPelicula(tiempo){
-  if (duracion < 300 && tiempo > 0){
+  if (tiempo < 300 && tiempo > 0){
     console.log('Está dentro de los tiempos de una pelicula')
     return true
   }else{
