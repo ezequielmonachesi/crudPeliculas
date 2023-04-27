@@ -32,6 +32,14 @@ function validarAnioPelicula(anio){
     }
 }
 
+function validacionGenero(genero){
+    if(genero.length > 0 && genero === 'Accion' || genero === 'Aventura' || genero === 'Comedia' || genero === 'Terror' || genero === 'Drama'){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 export function sumarioValidaciones(
   titulo,
   descripcion,
@@ -39,7 +47,8 @@ export function sumarioValidaciones(
   reparto,
   director,
   imagen,
-  anio
+  anio,
+  genero
 ) {
   let resumen = "";
   if (!validarCantidadCaracteres(titulo, 2, 100)) {
@@ -63,7 +72,10 @@ export function sumarioValidaciones(
   }
   if (!validarAnioPelicula(anio)) {
     const anioActual = new Date().getFullYear()+1;
-    resumen += `Tiene que ser un año entre 1985 y ${anioActual}`;
+    resumen += `Tiene que ser un año entre 1985 y ${anioActual} <br>`;
+  }
+  if (!validacionGenero(genero)) {
+    resumen += `Tiene que ser un género válido`;
   }
 
   return resumen;
