@@ -57,10 +57,12 @@ function crearPelicula() {
     director.value,
     imagen.value,
     anio.value,
-    genero.value
+    genero.value,
+    duracion.value
   );
   console.log(descripcion.value);
   if (listaErrores.length === 0) {
+    mostrarAlert(false, '');
     // creo la peli
     let nuevaPeli = new Pelicula(
       titulo.value,
@@ -80,9 +82,24 @@ function crearPelicula() {
     //guardar el array en localstorage
     localStorage.setItem("listaPeliculas", JSON.stringify(listaPeliculas));
     //limpiar el formulario
+    limpiarFormulario();
   } else {
-    let alerta = document.getElementById("alertMsjError");
-    alerta.className = "alert alert-danger";
-    alerta.innerHTML = listaErrores;
+    // si validacion falló pongo en true y muestro la lista de errores
+    mostrarAlert(true, listaErrores)
   }
+}
+
+function mostrarAlert(estado, resumenErrores){
+  let alerta = document.getElementById("alertMsjError");
+  // estado = true muestro el alert, caso contrario oculto
+  if(estado){
+    alerta.className = "alert alert-danger";
+    alerta.innerHTML = resumenErrores;
+  }else{
+    alerta.className = "alert alert-danger d-none";
+  }
+}
+
+function limpiarFormulario(){
+  formPelicula.reset();
 }

@@ -32,6 +32,16 @@ function validarAnioPelicula(anio){
     }
 }
 
+function duracionPelicula(tiempo){
+  if (duracion < 300 && tiempo > 0){
+    console.log('Está dentro de los tiempos de una pelicula')
+    return true
+  }else{
+    console.log('No está dentro de los tiempos de una pelicula')
+    return false
+  }
+}
+
 function validacionGenero(genero){
     if(genero.length > 0 && genero === 'Accion' || genero === 'Aventura' || genero === 'Comedia' || genero === 'Terror' || genero === 'Drama'){
         return true;
@@ -48,7 +58,8 @@ export function sumarioValidaciones(
   director,
   imagen,
   anio,
-  genero
+  genero,
+  duracion
 ) {
   let resumen = "";
   if (!validarCantidadCaracteres(titulo, 2, 100)) {
@@ -76,6 +87,9 @@ export function sumarioValidaciones(
   }
   if (!validacionGenero(genero)) {
     resumen += `Tiene que ser un género válido`;
+  }
+  if (!duracionPelicula(duracion)) {
+    resumen += `Tiene que ser una duracion entre 0 a 300 minutos.`;
   }
 
   return resumen;
