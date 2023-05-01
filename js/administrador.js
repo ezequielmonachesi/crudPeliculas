@@ -120,6 +120,14 @@ function crearPelicula() {
     localStorage.setItem("listaPeliculas", JSON.stringify(listaPeliculas));
     //limpiar el formulario
     limpiarFormulario();
+    //mostrar un mensaje:
+    Swal.fire(
+      'Good job!',
+      'You clicked the button!',
+      'success'
+    )
+    // dibuja la fila
+    crearFila(nuevaPeli, nuevaPeli.length)
   } else {
     // si validacion falló pongo en true y muestro la lista de errores
     mostrarAlert(true, listaErrores)
