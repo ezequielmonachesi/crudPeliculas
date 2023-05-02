@@ -39,25 +39,27 @@ if (!listaPeliculas) {
 }
 
 console.log(listaPeliculas);
-
+//manejadores de eventos
 formPelicula.addEventListener("submit", prepararFormulario);
 cargaInicial();
 // funciones
-function cargaInicial(){
-  if(listaPeliculas.length > 0){
+function cargaInicial() {
+  if (listaPeliculas.length > 0) {
     //dibujar las filas de la tabla
-    listaPeliculas.map((pelicula, indice)=> crearFila(pelicula, indice +1))
+    listaPeliculas.map((pelicula, indice) => crearFila(pelicula, indice + 1));
+  } else {
+    // le muestro el msj que no tengo elementos
   }
 }
 
-function crearFila(pelicula, indice){
-  let tablaPelicula = document.querySelector('tbody');
+function crearFila(pelicula, indice) {
+  let tablaPelicula = document.querySelector("tbody");
   tablaPelicula.innerHTML += `
   <tr>
                 <th scope="row">${indice}</th>
                 <td>${pelicula.titulo}</td>
                 <td class="text-truncate ancho pe-5">
-                .${pelicula.descripcion}
+                ${pelicula.descripcion}
                 </td>
                 <td class="text-truncate ancho pe-5">
                 ${pelicula.imagen}
@@ -76,7 +78,7 @@ function crearFila(pelicula, indice){
                   </button>
                 </td>
     </tr>
-  `
+  `;
 }
 
 function prepararFormulario(e) {
@@ -99,7 +101,7 @@ function crearPelicula() {
   );
   console.log(descripcion.value);
   if (listaErrores.length === 0) {
-    mostrarAlert(false, '');
+    mostrarAlert(false, "");
     // creo la peli
     let nuevaPeli = new Pelicula(
       titulo.value,
@@ -121,30 +123,26 @@ function crearPelicula() {
     //limpiar el formulario
     limpiarFormulario();
     //mostrar un mensaje:
-    Swal.fire(
-      'Good job!',
-      'You clicked the button!',
-      'success'
-    )
+    Swal.fire("Película creada", "La película fue correctamente almacenada", "success");
     // dibuja la fila
-    crearFila(nuevaPeli, nuevaPeli.length)
+    crearFila(nuevaPeli, listaPeliculas.length);
   } else {
     // si validacion falló pongo en true y muestro la lista de errores
-    mostrarAlert(true, listaErrores)
+    mostrarAlert(true, listaErrores);
   }
 }
 
-function mostrarAlert(estado, resumenErrores){
+function mostrarAlert(estado, resumenErrores) {
   let alerta = document.getElementById("alertMsjError");
   // estado = true muestro el alert, caso contrario oculto
-  if(estado){
+  if (estado) {
     alerta.className = "alert alert-danger";
     alerta.innerHTML = resumenErrores;
-  }else{
+  } else {
     alerta.className = "alert alert-danger d-none";
   }
 }
 
-function limpiarFormulario(){
+function limpiarFormulario() {
   formPelicula.reset();
 }
