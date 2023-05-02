@@ -25,6 +25,7 @@ if (!listaPeliculas) {
   listaPeliculas = JSON.parse(listaPeliculas).map(
     (pelicula) =>
       new Pelicula(
+        pelicula.codigo,
         pelicula.titulo,
         pelicula.descripcion,
         pelicula.director,
@@ -73,7 +74,7 @@ function crearFila(pelicula, indice) {
                     data-bs-target="#exampleModal"
                   >
                     <i class="bi bi-pencil-square"></i></button
-                  ><button type="button" class="btn btn-danger mx-1">
+                  ><button type="button" class="btn btn-danger mx-1" onclick="borrarPelicula('${pelicula.codigo}')">
                     <i class="bi bi-x-square"></i>
                   </button>
                 </td>
@@ -104,6 +105,7 @@ function crearPelicula() {
     mostrarAlert(false, "");
     // creo la peli
     let nuevaPeli = new Pelicula(
+      undefined,
       titulo.value,
       descripcion.value,
       director.value,
@@ -119,7 +121,7 @@ function crearPelicula() {
     listaPeliculas.push(nuevaPeli);
     console.log(listaPeliculas);
     //guardar el array en localstorage
-    localStorage.setItem("listaPeliculas", JSON.stringify(listaPeliculas));
+    guardarEnLocalStorage();
     //limpiar el formulario
     limpiarFormulario();
     //mostrar un mensaje:
@@ -130,6 +132,10 @@ function crearPelicula() {
     // si validacion falló pongo en true y muestro la lista de errores
     mostrarAlert(true, listaErrores);
   }
+}
+
+function guardarEnLocalStorage(){
+  localStorage.setItem("listaPeliculas", JSON.stringify(listaPeliculas));
 }
 
 function mostrarAlert(estado, resumenErrores) {
@@ -145,4 +151,18 @@ function mostrarAlert(estado, resumenErrores) {
 
 function limpiarFormulario() {
   formPelicula.reset();
+}
+
+window.borrarPelicula = (codigo)=>{
+    //borrar del array un objeto
+    let posicionPelicula = listaPeliculas.findIndex((pelicula)=>pelicula.codigo === codigo);
+    listaPeliculas.splice(posicionPelicula,1);
+    console.log(posicionPelicula)
+    //actualizar el localstorage
+    guardarEnLocalStorage();
+    //borra la fila de la tabla
+    let tablaPelicula = document.querySelector("tbody");
+    tablaPelicula.removeChild(tablaPelicula.children[posicionPelicula]);
+
+    // todo agregar una funcion que actualice el td de cada fila con la cantidad de elementos del array
 }
