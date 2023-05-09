@@ -125,7 +125,11 @@ function crearPelicula() {
     //limpiar el formulario
     limpiarFormulario();
     //mostrar un mensaje:
-    Swal.fire("Película creada", "La película fue correctamente almacenada", "success");
+    Swal.fire(
+      "Película creada",
+      "La película fue correctamente almacenada",
+      "success"
+    );
     // dibuja la fila
     crearFila(nuevaPeli, listaPeliculas.length);
   } else {
@@ -134,7 +138,7 @@ function crearPelicula() {
   }
 }
 
-function guardarEnLocalStorage(){
+function guardarEnLocalStorage() {
   localStorage.setItem("listaPeliculas", JSON.stringify(listaPeliculas));
 }
 
@@ -153,16 +157,31 @@ function limpiarFormulario() {
   formPelicula.reset();
 }
 
-window.borrarPelicula = (codigo)=>{
-    //borrar del array un objeto
-    let posicionPelicula = listaPeliculas.findIndex((pelicula)=>pelicula.codigo === codigo);
-    listaPeliculas.splice(posicionPelicula,1);
-    console.log(posicionPelicula)
-    //actualizar el localstorage
-    guardarEnLocalStorage();
-    //borra la fila de la tabla
-    let tablaPelicula = document.querySelector("tbody");
-    tablaPelicula.removeChild(tablaPelicula.children[posicionPelicula]);
-
-    // todo agregar una funcion que actualice el td de cada fila con la cantidad de elementos del array
-}
+window.borrarPelicula = (codigo) => {
+  Swal.fire({
+    title: "¿Estás seguro de borrar la película",
+    text: "No puedes revertir posteriormente este paso",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!",
+    cancelButtomText: "Cancelar",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      //borrar del array un objeto
+      let posicionPelicula = listaPeliculas.findIndex(
+        (pelicula) => pelicula.codigo === codigo
+      );
+      listaPeliculas.splice(posicionPelicula, 1);
+      console.log(posicionPelicula);
+      //actualizar el localstorage
+      guardarEnLocalStorage();
+      //borra la fila de la tabla
+      let tablaPelicula = document.querySelector("tbody");
+      tablaPelicula.removeChild(tablaPelicula.children[posicionPelicula]);
+      // todo agregar una funcion que actualice el td de cada fila con la cantidad de elementos del array
+      Swal.fire("Deleted!", "Your file has been deleted.", "success");
+    }
+  });
+};
