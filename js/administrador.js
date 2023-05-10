@@ -192,4 +192,5 @@ window.prepararPelicula = (codigo) =>{
   console.log(codigo, 'desde preparar pelicula');
   // mostrar la ventana modal con los datos de la pelicula
   modalPelicula.show();
+  // quedé en min 1:19hs 02-05
 }
