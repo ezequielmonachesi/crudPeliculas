@@ -12,6 +12,7 @@ let reparto = document.getElementById("reparto");
 let duracion = document.getElementById("duracion");
 let pais = document.getElementById("pais");
 let anio = document.getElementById("anio");
+let modalPelicula = new bootstrap.Modal(document.getElementById('modalAministradorPelicula'));
 
 // // si quiero trabahar con un array de objetos normales hago esta línea de código
 // let listaPeliculas = JSON.parse(localStorage.getItem('listaPeliculas')) || [];
@@ -71,7 +72,8 @@ function crearFila(pelicula, indice) {
                     type="button"
                     class="btn btn-warning mx-1"
                     data-bs-toggle="modal"
-                    data-bs-target="#exampleModal"
+                    data-bs-target="#modalAministradorPelicula"
+                    onclick="prepararPelicula('${pelicula.codigo}')"
                   >
                     <i class="bi bi-pencil-square"></i></button
                   ><button type="button" class="btn btn-danger mx-1" onclick="borrarPelicula('${pelicula.codigo}')">
@@ -181,7 +183,13 @@ window.borrarPelicula = (codigo) => {
       let tablaPelicula = document.querySelector("tbody");
       tablaPelicula.removeChild(tablaPelicula.children[posicionPelicula]);
       // todo agregar una funcion que actualice el td de cada fila con la cantidad de elementos del array
-      Swal.fire("Deleted!", "Your file has been deleted.", "success");
+      Swal.fire("Película eliminiada", "La pélicula seleccionada fue eliminada correctamente", "success");
     }
   });
 };
+
+window.prepararPelicula = (codigo) =>{
+  console.log(codigo, 'desde preparar pelicula');
+  // mostrar la ventana modal con los datos de la pelicula
+  modalPelicula.show();
+}
